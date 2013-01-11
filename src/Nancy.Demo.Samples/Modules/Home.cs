@@ -2,15 +2,17 @@
 {
     using System.Linq;
     using Data;
+    using Models;
+    using MongoDB.Driver;
 
     public class Home : NancyModule
     {
-        public Home(IDemoRepository repository)
+        public Home(IDemoRepository repository, MongoDatabase database)
         {
             Get["/"] = parameters => {
                 var model = 
                     repository.GetAll().OrderBy(x => x.Name).ThenBy(x => x.Author);
-
+                
                 return Negotiate.WithModel(model).WithView("index");
             };
 
@@ -22,14 +24,18 @@
                 return View["login"];
             };
 
-            //Get["/index"] = parameters => {
-            //    foreach (var demo in store.GetAll())
-            //    {
-            //        documentSession.Store(demo);
-            //    }
+            Get["/mongo/{author}"] = x =>
+            {
+                var entity =
+                    new DemoModel() { Author = (string)x.author };
 
-            //    return 200;
-            //};
+                var collection =
+                    database.GetCollection<DemoModel>("demos");
+
+                collection.Insert(entity);
+
+                return 200;
+            };
         }
     }
 }
