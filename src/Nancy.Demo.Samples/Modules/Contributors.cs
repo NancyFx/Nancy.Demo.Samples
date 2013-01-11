@@ -5,7 +5,7 @@ namespace Nancy.Demo.Samples.Modules
 
     public class Contributors : NancyModule
     {
-        public Contributors(IContributorRepository contributorRepository, IGitHubUserFactory factory, IDemoRepository demoRepository, IBackgroundIndexer indexer)
+        public Contributors(IContributorRepository contributorRepository, IGitHubUserFactory factory, IDemoRepository demoRepository)
             : base("/contributors")
         {
             Get["/"] = x => {
@@ -19,7 +19,6 @@ namespace Nancy.Demo.Samples.Modules
                 if (contributorRepository != null)
                 {
                     contributorRepository.Persist(contributor);
-                    indexer.Index(contributor.Username);
                 }
 
                 return Response.AsRedirect("~/contributors");
