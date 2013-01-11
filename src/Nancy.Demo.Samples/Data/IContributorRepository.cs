@@ -1,6 +1,8 @@
 ﻿namespace Nancy.Demo.Samples.Data
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Nancy.Demo.Samples.Models;
 
     /// <summary>
@@ -25,5 +27,28 @@
         /// </summary>
         /// <param name="contributor">The <see cref="ContributorModel"/> instance to persist</param>
         void Persist(ContributorModel contributor);
+    }
+
+    public class DefaultContributorRepository : IContributorRepository
+    {
+        public IEnumerable<ContributorModel> GetByUserName(string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<ContributorModel> GetAll()
+        {
+            return Enumerable.Empty<ContributorModel>();
+        }
+
+        public void Persist(ContributorModel contributor)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

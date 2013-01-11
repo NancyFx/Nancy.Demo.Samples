@@ -1,6 +1,8 @@
 ﻿namespace Nancy.Demo.Samples.Data
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Nancy.Demo.Samples.Models;
 
     /// <summary>
@@ -24,5 +26,28 @@
         /// </summary>
         /// <param name="demo">The <see cref="DemoModel"/> instance to persist</param>
         void Persist(DemoModel demo);
+    }
+
+    public class DefaultDemoRepository : IDemoRepository
+    {
+        public void DeleteByAuthor(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<DemoModel> GetAll()
+        {
+            return Enumerable.Empty<DemoModel>();
+        }
+
+        public IEnumerable<DemoModel> GetByUserName(string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Persist(DemoModel demo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
