@@ -1,0 +1,82 @@
+﻿@Master['master']
+
+@Section['Content']
+
+    <div id="class="well well-small">
+        <form class="form-horizontal" method="post">
+            <legend>Please enter github username of user to add</legend>
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Enter the github username" />
+            <input type="submit" class="btn btn-primary"/>
+        </form>
+    </div>
+
+    <div data-bind="foreach: contributors, visible: contributors().length" style="display: none">
+        <div class="widget">
+            <a href='#' data-bind="attr: { href: url }">
+                <img data-bind="attr: { src: avatarUrl }" alt="" class="avatar" style="float: left;" />
+            </a>
+
+            <div class="list-head clearfix">
+                <h3>
+                    <a href='#' data-bind="attr: { href: username }, text: fullName">
+                    </a>
+                </h3>
+                <i class="icon-trash"></i> <a href='#' class="delete" data-bind="click: remove">Delete</a>
+            </div>
+        <div>
+    </div>
+
+@EndSection&
+
+@Section['Scripts']
+
+    function ContributorModel(data, onRemoved) {
+        var self = this
+
+        self.avatarUrl = data.AvatarUrl;
+        self.id = data.Id,
+        self.name = data.Name;
+        self.url = data.Url;
+        self.username = data.Username;
+
+        self.fullName = ko.computed(function () {
+            return self.username + ' (' + self.name + ')';
+        });
+
+        self.deleteUrl = ko.computed(function () {
+            return '/contributors/' + self.username;
+        });
+
+         self.remove = function(data, event) {
+            $.ajax({
+                type: 'DELETE',
+                url: '/contributors/' + self.username,
+                success: function() {
+                    onRemoved(self);
+                }
+            });
+        };
+      
+    };
+
+    function ContributorsViewModel() {
+        var self = this;
+
+        self.contributors = ko.observableArray();
+
+        $.getJSON("/contributors", function (response) {
+            var mapped = $.map(response, function (repo) {
+                return new ContributorModel(repo, self.onContributorRemoved);
+            });
+            self.contributors(mapped);
+        });
+
+        self.onContributorRemoved = function(contributor) {
+            self.contributors.remove(contributor);
+        }
+    };
+
+    ko.applyBindings(new ContributorsViewModel());
+
+@EndSection

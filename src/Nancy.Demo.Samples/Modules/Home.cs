@@ -1,16 +1,35 @@
 ﻿namespace Nancy.Demo.Samples.Modules
 {
+    using System.Linq;
+    using Data;
+
     public class Home : NancyModule
     {
-        // http://nuget.org/api/v2/Packages(Id='Nancy',%20Version='0.13.0')
-        // uses nuget tags?
-
-        public Home(IRepositoryStore store)
+        public Home(IDemoRepository repository)
         {
-            Get["/"] = x =>
-            {
-                return View["home", store.GetAll()];
+            Get["/"] = parameters => {
+                var model = 
+                    repository.GetAll().OrderBy(x => x.Name).ThenBy(x => x.Author);
+
+                return Negotiate.WithModel(model).WithView("index");
             };
+
+            Get["/about"] = parameters => {
+                return View["about"];
+            };
+
+            Get["/login"] = parameters => {
+                return View["login"];
+            };
+
+            //Get["/index"] = parameters => {
+            //    foreach (var demo in store.GetAll())
+            //    {
+            //        documentSession.Store(demo);
+            //    }
+
+            //    return 200;
+            //};
         }
     }
 }

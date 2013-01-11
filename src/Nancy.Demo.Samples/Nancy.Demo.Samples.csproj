@@ -38,19 +38,73 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\packages\RavenDB.Database.1.0.960\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Esent.Interop">
+      <HintPath>..\packages\RavenDB.Database.1.0.960\lib\net40\Esent.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.NRefactory">
+      <HintPath>..\packages\RavenDB.Database.1.0.960\lib\net40\ICSharpCode.NRefactory.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net">
+      <HintPath>..\packages\RavenDB.Database.1.0.960\lib\net40\Lucene.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Spatial">
+      <HintPath>..\packages\RavenDB.Database.1.0.960\lib\net40\Lucene.Net.Contrib.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.SpellChecker">
+      <HintPath>..\packages\RavenDB.Database.1.0.960\lib\net40\Lucene.Net.Contrib.SpellChecker.dll</HintPath>
+    </Reference>
     <Reference Include="MarkdownSharp">
-      <HintPath>packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
+      <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Nancy">
-      <HintPath>packages\Nancy.0.12.1\lib\net40\Nancy.dll</HintPath>
+    <Reference Include="Nancy, Version=0.15.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Nancy.0.15.1\lib\net40\Nancy.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy.Hosting.Aspnet">
-      <HintPath>packages\Nancy.Hosting.Aspnet.0.12.1\lib\net40\Nancy.Hosting.Aspnet.dll</HintPath>
+    <Reference Include="Nancy.Hosting.Aspnet, Version=0.15.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Nancy.Hosting.Aspnet.0.15.1\lib\net40\Nancy.Hosting.Aspnet.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy.ViewEngines.Razor">
-      <HintPath>packages\Nancy.Viewengines.Razor.0.12.1\lib\net40\Nancy.ViewEngines.Razor.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Abstractions">
+      <HintPath>..\packages\RavenDB.Client.1.0.960\lib\net40\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Backup">
+      <HintPath>..\packages\RavenDB.Database.1.0.960\lib\net40\Raven.Backup.exe</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Embedded">
+      <HintPath>..\packages\RavenDB.Embedded.1.0.960\lib\net40\Raven.Client.Embedded.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight">
+      <HintPath>..\packages\RavenDB.Client.1.0.960\lib\net40\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Database">
+      <HintPath>..\packages\RavenDB.Database.1.0.960\lib\net40\Raven.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Munin">
+      <HintPath>..\packages\RavenDB.Database.1.0.960\lib\net40\Raven.Munin.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Smuggler">
+      <HintPath>..\packages\RavenDB.Database.1.0.960\lib\net40\Raven.Smuggler.exe</HintPath>
+    </Reference>
+    <Reference Include="Raven.Storage.Esent">
+      <HintPath>..\packages\RavenDB.Database.1.0.960\lib\net40\Raven.Storage.Esent.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Storage.Managed">
+      <HintPath>..\packages\RavenDB.Database.1.0.960\lib\net40\Raven.Storage.Managed.dll</HintPath>
+    </Reference>
+    <Reference Include="Spatial4n.Core">
+      <HintPath>..\packages\RavenDB.Database.1.0.960\lib\net40\Spatial4n.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -61,10 +115,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>packages\Nancy.Viewengines.Razor.0.12.1\lib\net40\System.Web.Razor.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -86,25 +136,47 @@
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\jquery.fancybox.pack.js" />
+    <Content Include="Content\js\jquery.masonry.min.js" />
+    <Content Include="Content\js\knockout-2.2.0.js" />
+    <Content Include="Content\js\moment.min.js" />
+    <Content Include="Raven.Studio.xap" />
+    <Content Include="Views\login.sshtml" />
+    <Content Include="Views\contributors.sshtml" />
+    <Content Include="Views\master.sshtml" />
+    <Content Include="Views\about.sshtml" />
+    <None Include="Views\index.sshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HttpHelper.cs" />
-    <Compile Include="IGithubFileExtractor.cs" />
-    <Compile Include="IRepositoryStore.cs" />
+    <Compile Include="ContributorsByUsername.cs" />
+    <Compile Include="Data\DefaultDemoModelFactory.cs" />
+    <Compile Include="DefaultGitHubFileContentExtractor.cs" />
+    <Compile Include="DefaultRepositoryNugetChecker.cs" />
+    <Compile Include="DemosByAuthor.cs" />
+    <Compile Include="IRepositoryNugetChecker.cs" />
+    <Compile Include="Data\DefaultGitHubUserFactory.cs" />
+    <Compile Include="Data\IGitHubUserFactory.cs" />
+    <Compile Include="Data\IContributorRepository.cs" />
+    <Compile Include="Data\RavenDbContributorRepository.cs" />
+    <Compile Include="Models\ContributorModel.cs" />
+    <Compile Include="Data\RavenDbDemoRespository.cs" />
+    <Compile Include="Net\HttpHelper.cs" />
+    <Compile Include="IGitHubFileContentExtractor.cs" />
+    <Compile Include="Data\IDemoRepository.cs" />
+    <Compile Include="BackgroundIndexer.cs" />
+    <Compile Include="Bootstrapper.cs" />
     <Compile Include="Modules\Home.cs" />
-    <Compile Include="HttpClient.cs" />
-    <Compile Include="IHttpClient.cs" />
-    <Compile Include="IRepositoryModelFactory.cs" />
-    <Compile Include="IApiCredentials.cs" />
-    <Compile Include="RepositoryModel.cs" />
+    <Compile Include="Net\DefaultGithubHttpClient.cs" />
+    <Compile Include="Net\IGitHubHttpClient.cs" />
+    <Compile Include="Data\IDemoModelFactory.cs" />
+    <Compile Include="Models\DemoModel.cs" />
+    <Compile Include="Modules\Login.cs" />
+    <Compile Include="Modules\Contributors.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimpleJson.cs" />
+    <Compile Include="Net\SimpleJson.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="Views\home.cshtml" />
-    <Content Include="Views\layout.cshtml" />
     <Content Include="Content\font\fontawesome-webfont.eot" />
     <Content Include="Content\font\fontawesome-webfont.svg" />
     <Content Include="Content\font\fontawesome-webfont.ttf" />
@@ -116,7 +188,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -130,7 +204,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>45579</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:18603/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
@@ -144,10 +218,7 @@
   </ProjectExtensions>
   <PropertyGroup>
     <PostBuildEvent>
-if $(ConfigurationName) == Debug (
-xcopy /s /y /R "$(SolutionDir)packages\Nancy.Viewengines.Razor.0.12.1\BuildProviders\Nancy.ViewEngines.Razor.BuildProviders.dll" "$(ProjectDir)bin"
-xcopy /s /y /R "$(SolutionDir)packages\Nancy.Viewengines.Razor.0.12.1\lib\Net40\Nancy.ViewEngines.Razor.dll" "$(ProjectDir)bin"
-)</PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

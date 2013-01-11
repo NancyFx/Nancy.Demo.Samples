@@ -1,0 +1,10 @@
+﻿@Master['master']
+
+@Section['Content']
+    <form class="form-horizontal" action="/login" method="post">
+		<legend>Please enter password to login</legend>
+		<label>Password</label>
+		<input type="password" name="password" placeholder="Enter your password" />
+		<input type="submit" class="btn btn-primary"/>
+	</form>
+@EndSection

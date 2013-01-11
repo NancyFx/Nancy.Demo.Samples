@@ -1,0 +1,117 @@
+﻿@Master['master']
+
+@Section['Content']
+    <div class="stuff" data-bind="foreach: demos, masonry: { columnWidth: 425, isAnimated: true }">
+        <div class="widget">
+			<div class="content">
+                <a href='#' data-bind="attr: { href: authorUrl }">
+                    <img data-bind="attr: { src: gravatar }" alt="" class="avatar" style="float: left;" />
+                </a>
+
+                <div class="list-head clearfix">
+                    <h3>
+                        <a href='#' data-bind="attr: { href: url }, text: demoName"></a>
+                    </h3>
+        
+                    <div id="list-meta">
+                        version <span data-bind="text: version"></span> by <a href='#' data-bind="attr: { href: authorUrl }, text: author"></a>
+                    </div>
+                </div>
+
+                <div class="main">
+					<p class="clearfix;" style="margin-top: 15px;" data-bind="text: description"></p>
+        
+					<p>
+						Last updated: <span data-bind="date: lastCommit"></span>
+					</p>
+        
+					<div data-bind="visible: packages.length">
+						Packages used in this sample
+						<div class="well well-small">
+							<ul data-bind="foreach: packages">
+								<li>
+									<a href='#' data-bind="attr: { href: $parent.nugetUrl }">
+										<span data-bind="text: Item1"></span> (<span data-bind="text: Item2"></span>)
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+
+                <div class="readme" data-bind="html: readMe"></div>
+
+            </div>
+            <i class="icon-info-sign"></i> <a href="javascript: void(0); return false;" class="open">Read more</a>
+        </div>
+    </div>
+@EndSection
+
+@Section['Scripts']
+
+    function DemoModel(data) {
+        var self = this
+
+        self.author = data.Author;
+        self.description = data.Description;
+        self.gravatar = data.Gravatar;
+        self.hasNuget = data.HasNuget;
+        self.lastCommit = data.LastCommit;
+        self.name = data.Name;
+		self.packages = data.Packages;
+        self.readMe = data.Readme;
+        self.url = data.Url;
+        self.version = data.Version;
+
+        self.authorUrl = ko.computed(function () {
+            return 'http://github.com/' + self.author;
+        });
+
+		self.nugetUrl = ko.computed(function() {
+			return 'http://nuget.org/packages/' + self.name;
+		});
+
+        self.demoName = ko.computed(function () {
+            return self.name.replace('Nancy.Demo.', '');
+        });
+    };
+
+    function DemosViewModel() {
+        var self = this;
+
+        self.demos = ko.observableArray();
+
+        $.getJSON("/", function (response) {
+            var mapped = $.map(response, function (demo) {
+                return new DemoModel(demo);
+            });
+            self.demos(mapped);
+        });
+    };
+
+	ko.bindingHandlers.date = {
+		update: function(element, valueAccessor) {
+			$(element).html(moment(valueAccessor()).fromNow());
+		}
+	};
+
+	ko.bindingHandlers.masonry = {
+		update: function(element, valueAccessor, allBindingsAccessor) {
+			var $element = $(element),
+				list = ko.utils.unwrapObservable(allBindingsAccessor().foreach)
+				masonry = ko.utils.unwrapObservable(valueAccessor())
+        
+			if ($element.data('masonry'))
+				$element.masonry('destroy')
+            
+			if (!list.length)
+				return
+            
+			$element.masonry(masonry)
+		}
+	}
+
+	ko.applyBindings(new DemosViewModel());
+
+@EndSection
