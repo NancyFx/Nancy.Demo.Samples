@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
+    using MongoDB.Driver;
     using Nancy.Demo.Samples.Models;
 
     /// <summary>
@@ -12,9 +12,6 @@
     public interface IContributorRepository
     {
         IEnumerable<ContributorModel> GetByUserName(string username);
-
-        void DeleteByName(string name);
-
 
         /// <summary>
         /// Gets all the contributors in the data store.
@@ -31,24 +28,26 @@
 
     public class DefaultContributorRepository : IContributorRepository
     {
-        public IEnumerable<ContributorModel> GetByUserName(string username)
+        private readonly MongoCollection<ContributorModel> collection;
+
+        public DefaultContributorRepository(MongoDatabase database)
         {
-            throw new NotImplementedException();
+            this.collection = database.GetCollection<ContributorModel>("contributors");
         }
 
-        public void DeleteByName(string name)
+        public IEnumerable<ContributorModel> GetByUserName(string username)
         {
             throw new NotImplementedException();
         }
 
         public IEnumerable<ContributorModel> GetAll()
         {
-            return Enumerable.Empty<ContributorModel>();
+            return this.collection.FindAll();
         }
 
         public void Persist(ContributorModel contributor)
         {
-            throw new NotImplementedException();
+            collection.Insert(contributor);
         }
     }
 }

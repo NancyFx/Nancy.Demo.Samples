@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
+    using MongoDB.Driver;
     using Nancy.Demo.Samples.Models;
 
     /// <summary>
@@ -19,8 +19,6 @@
         /// <returns>An <see cref="IEnumerable{T}"/>, of <see cref="DemoModel"/> instances.</returns>
         IEnumerable<DemoModel> GetAll();
 
-        IEnumerable<DemoModel> GetByUserName(string username);
-
         /// <summary>
         /// Persists a new demo in the data store.
         /// </summary>
@@ -30,6 +28,13 @@
 
     public class DefaultDemoRepository : IDemoRepository
     {
+        private readonly MongoCollection<DemoModel> collection;
+
+        public DefaultDemoRepository(MongoDatabase database)
+        {
+            this.collection = database.GetCollection<DemoModel>("demos");
+        }
+
         public void DeleteByAuthor(string name)
         {
             throw new NotImplementedException();
@@ -37,17 +42,12 @@
 
         public IEnumerable<DemoModel> GetAll()
         {
-            return Enumerable.Empty<DemoModel>();
-        }
-
-        public IEnumerable<DemoModel> GetByUserName(string username)
-        {
-            throw new NotImplementedException();
+            return this.collection.FindAll();
         }
 
         public void Persist(DemoModel demo)
         {
-            throw new NotImplementedException();
+            collection.Insert(demo);
         }
     }
 }
