@@ -28,7 +28,7 @@
         /// <paramref name="client"/>, <paramref name="githubFileContentExtractor"/> and <paramref name="repositoryNugetChecker"/>.
         /// </summary>
         /// <param name="client">The <see cref="IGitHubHttpClient"/> that should be used to communicate with GitHub.</param>
-        /// <param name="githubFileContentExtractor">The <see cref="IGitHubApiCredentials"/> that should be used to retrieve the content of files hosted on GitHub.</param>
+        /// <param name="githubFileContentExtractor"></param>
         /// <param name="repositoryNugetChecker">The <see cref="IRepositoryNugetChecker"/> that should be used to verify that a Nuget is available for the demo.</param>
         public DefaultDemoModelFactory(IGitHubHttpClient client, IGitHubFileContentExtractor githubFileContentExtractor, IRepositoryNugetChecker repositoryNugetChecker)
         {
@@ -60,6 +60,7 @@
                 .Where(repo => repo.name.StartsWith("Nancy.Demo", StringComparison.OrdinalIgnoreCase))
                 .Where(repo => ((bool)repo.fork) == false)
                 .Select(repo => new DemoModel {
+                    Id = Guid.NewGuid().ToString(),
                     Name = repo.name,
                     Description = repo.description,
                     Author = repo.owner.login,
@@ -85,7 +86,7 @@
             //.Where(demo => !string.IsNullOrWhiteSpace(demo.Description));
         }
 
-        private IEnumerable<Tuple<string, string>> ExtractNugetPackages(string owner, string repositoryName)
+        private IEnumerable<Package> ExtractNugetPackages(string owner, string repositoryName)
         {
             var relativeFilePath =
                 string.Format("contents/src/{0}/packages.config", repositoryName);
@@ -94,14 +95,14 @@
             {
                 if (string.IsNullOrWhiteSpace(content))
                 {
-                    return Enumerable.Empty<Tuple<string, string>>();
+                    return Enumerable.Empty<Package>();
                 }
 
                 return nugetPackagesPattern.Matches(content)
                     .OfType<Match>()
-                    .Select(match => new Tuple<string, string>(
-                        match.Groups["name"].Value, 
-                        match.Groups["version"].Value));
+                    .Select(match => new Package {
+                        Name = match.Groups["name"].Value,
+                        Version = match.Groups["version"].Value});
             });
         }
 
@@ -146,5 +147,12 @@
                     : string.Empty;
             });
         }
+    }
+
+    public class Package
+    {
+        public string Name { get; set; }
+
+        public string Version { get; set; }
     }
 }
