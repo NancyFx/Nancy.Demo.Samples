@@ -107,10 +107,18 @@
             
 			if (!list.length)
 				return
-            
+
 			$element.masonry(masonry)
 		}
 	}
+
+
+	hljs.tabReplace = '    ';
+    hljs.initHighlighting();
+ 
+    $(".open").click(function () {
+        $.fancybox({ content: $('<div/>').addClass('widget').html($('.content', $(this).parent()).html()) });
+    });
 
 	ko.applyBindings(new DemosViewModel());
 
