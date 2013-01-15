@@ -31,7 +31,7 @@
 							<ul data-bind="foreach: packages">
 								<li>
 									<a href='#' data-bind="attr: { href: $parent.nugetUrl }">
-										<span data-bind="text: Item1"></span> (<span data-bind="text: Item2"></span>)
+										<span data-bind="text: Name"></span> (<span data-bind="text: Version"></span>)
 									</a>
 								</li>
 							</ul>

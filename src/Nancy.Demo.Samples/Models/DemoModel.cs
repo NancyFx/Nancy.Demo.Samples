@@ -22,7 +22,7 @@
 
         public string Id { get; set; }
 
-        public IEnumerable<Tuple<string, string>> Packages { get; set; }
+        public IEnumerable<Package> Packages { get; set; }
 
         public string Readme { get; set; }
 
