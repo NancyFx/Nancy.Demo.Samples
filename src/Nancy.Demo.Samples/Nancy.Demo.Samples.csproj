@@ -107,6 +107,7 @@
     <Compile Include="Data\IGitHubUserFactory.cs" />
     <Compile Include="Data\IContributorRepository.cs" />
     <Compile Include="Models\ContributorModel.cs" />
+    <Compile Include="Modules\Api.cs" />
     <Compile Include="Net\HttpHelper.cs" />
     <Compile Include="IGitHubFileContentExtractor.cs" />
     <Compile Include="Data\IDemoRepository.cs" />

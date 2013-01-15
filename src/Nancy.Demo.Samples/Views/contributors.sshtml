@@ -66,7 +66,7 @@
          self.remove = function(data, event) {
             $.ajax({
                 type: 'DELETE',
-                url: '/contributors/' + self.username,
+                url: '/api/contributors/' + self.username,
                 success: function() {
                     onRemoved(self);
                 }
@@ -80,7 +80,7 @@
 
         self.contributors = ko.observableArray();
 
-        $.getJSON("/contributors", function (response) {
+        $.getJSON("/api/contributors", function (response) {
             var mapped = $.map(response, function (repo) {
                 return new ContributorModel(repo, self.onContributorRemoved);
             });

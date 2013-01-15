@@ -1,6 +1,5 @@
 namespace Nancy.Demo.Samples.Modules
 {
-    using System.Linq;
     using Data;
 
     public class Contributors : NancyModule
@@ -9,7 +8,7 @@ namespace Nancy.Demo.Samples.Modules
             : base("/contributors")
         {
             Get["/"] = x => {
-                return Negotiate.WithModel(contributorRepository.GetAll()).WithView("contributors");
+                return View["contributors"];
             };
 
             Post["/"] = x => {
@@ -41,11 +40,6 @@ namespace Nancy.Demo.Samples.Modules
 
                 return Response.AsRedirect("~/contributors");
             };
-
-            Post["/index"] = x => {
-                return Response.AsRedirect("~/contributors");
-            };
-
 
             Post["/refresh"] = parameters =>
             {

@@ -82,7 +82,7 @@
 
         self.demos = ko.observableArray();
 
-        $.getJSON("/", function (response) {
+        $.getJSON("/api/demos", function (response) {
             var mapped = $.map(response, function (demo) {
                 return new DemoModel(demo);
             });
