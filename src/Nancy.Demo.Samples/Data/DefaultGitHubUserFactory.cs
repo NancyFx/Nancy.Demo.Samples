@@ -39,6 +39,7 @@
                 null :
                 new ContributorModel
                 {
+                    Id = Guid.NewGuid().ToString(),
                     AvatarUrl = response.avatar_url,
                     Name = response.name,
                     Url = response.html_url,
