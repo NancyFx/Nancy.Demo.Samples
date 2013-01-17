@@ -1,6 +1,11 @@
 ﻿@Master['master']
 
 @Section['Content']
+
+@If.Context.HasCurrentUser
+	User is logged in
+@EndIf
+
     <div class="stuff" data-bind="foreach: demos, masonry: { columnWidth: 425, isAnimated: true }">
         <div class="widget">
 			<div class="content">

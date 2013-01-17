@@ -133,10 +133,10 @@
                 </ul>
 				<div  class="pull-right">
 					<ul class="nav">
-						@If.Context.CurrentUser
+						@If.Context.HasCurrentUser
 							<li><a href="/logout">Log out</a></li>
 						@EndIf
-						@IfNot.Context.CurrentUser
+						@IfNot.Context.HasCurrentUser
 							<li><a href="/login">Log in</a></li>
 						@EndIf
 					</ul>
