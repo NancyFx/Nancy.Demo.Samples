@@ -48,16 +48,17 @@
     <Reference Include="MongoDB.Driver">
       <HintPath>..\packages\mongocsharpdriver.1.7\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy, Version=0.15.2.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Nancy, Version=0.15.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Nancy.0.15.2\lib\net40\Nancy.dll</HintPath>
+      <HintPath>..\packages\Nancy.0.15.3\lib\net40\Nancy.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy.Authentication.Forms">
-      <HintPath>..\packages\Nancy.Authentication.Forms.0.15.2\lib\net40\Nancy.Authentication.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy.Hosting.Aspnet, Version=0.15.2.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Nancy.Authentication.Forms, Version=0.15.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Nancy.Hosting.Aspnet.0.15.2\lib\net40\Nancy.Hosting.Aspnet.dll</HintPath>
+      <HintPath>..\packages\Nancy.Authentication.Forms.0.15.3\lib\net40\Nancy.Authentication.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Hosting.Aspnet, Version=0.15.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Nancy.Hosting.Aspnet.0.15.3\lib\net40\Nancy.Hosting.Aspnet.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Runtime.Caching" />
@@ -111,6 +112,7 @@
     <Compile Include="Data\DefaultGitHubUserFactory.cs" />
     <Compile Include="Data\IGitHubUserFactory.cs" />
     <Compile Include="Data\IContributorRepository.cs" />
+    <Compile Include="IUserDatabase.cs" />
     <Compile Include="Models\ContributorModel.cs" />
     <Compile Include="Modules\Api.cs" />
     <Compile Include="Net\HttpHelper.cs" />
@@ -126,6 +128,8 @@
     <Compile Include="Modules\Contributors.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Net\SimpleJson.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

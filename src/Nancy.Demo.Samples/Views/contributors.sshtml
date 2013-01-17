@@ -2,7 +2,7 @@
 
 @Section['Content']
 
-	@If.Context.CurrentUser
+	@IfNotNull.Context.CurrentUser
 		<div id="class="well well-small">
 			<form class="form-horizontal" method="post">
 				<legend>Please enter github username of user to add</legend>
@@ -39,7 +39,9 @@
                     <a href='#' data-bind="attr: { href: username }, text: fullName">
                     </a>
                 </h3>
-                <i class="icon-trash"></i> <a href='#' class="delete" data-bind="click: remove">Delete</a>
+				@IfNotNull.Context.CurrentUser
+					<i class="icon-trash"></i> <a href='#' class="delete" data-bind="click: remove">Delete</a>
+				@EndIf
             </div>
         <div>
     </div>
