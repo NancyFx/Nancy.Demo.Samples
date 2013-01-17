@@ -114,6 +114,7 @@
     <Compile Include="Data\IContributorRepository.cs" />
     <Compile Include="IUserDatabase.cs" />
     <Compile Include="Models\ContributorModel.cs" />
+    <Compile Include="Modules\Admin.cs" />
     <Compile Include="Modules\Api.cs" />
     <Compile Include="Net\HttpHelper.cs" />
     <Compile Include="IGitHubFileContentExtractor.cs" />

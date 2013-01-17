@@ -70,7 +70,7 @@
          self.remove = function(data, event) {
             $.ajax({
                 type: 'DELETE',
-                url: '/api/contributors/' + self.username,
+                url: '/contributors/' + self.username,
                 success: function() {
                     onRemoved(self);
                 }
