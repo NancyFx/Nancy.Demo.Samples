@@ -68,6 +68,10 @@
 				display: none;
 			}
 
+			.modal .readme {
+				display: block;
+			}
+
 			.containerx .packages {
 				display: none;
 			}
@@ -125,6 +129,53 @@
 			.widget h3 a {
 				font-weight: normal;
 				color: #dd390d;
+			}
+
+			.modal {
+				left: 50%;
+				margin-left: -110px;
+				padding: 20px;
+				opacity: 0;
+				position: absolute;
+  
+				-webkit-transition: all 100ms ease-in;
+			}
+
+			.modal::before {
+				background: rgba(0,0,0,.3);
+				content: '';
+				left: 0;
+				opacity: 0;
+				position: fixed;
+				right: 0;
+				top: 0;
+			}
+
+			.modal::after {
+				background: white;
+				border-radius: 10px;
+				bottom: 0;
+				box-shadow: 0 0 30px rgba(0,0,0,.5);
+				content: '';
+				left: 0;
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+
+			.modal.open {
+				opacity: 1;
+				top: 100px;
+			}
+
+			.modal.open::before {
+				bottom: 0;
+				opacity: 1;
+			}
+
+			.modal .content {
+				position: relative;
+				z-index: 1;
 			}
 			
 		</style>

@@ -4,6 +4,7 @@
 
 	<div data-bind="foreach: demos, visible: demos().length, masonry: { columnWidth: 425, isAnimated: true }">
 		<div class="widget">
+			<div data-bind="css: { modal: isOpen, open: isOpen }">
 			<div class="content">
 				<a href='#' data-bind="attr: { href: authorUrl }">
 					<img data-bind="attr: { src: gravatar }" alt="" class="avatar" style="float: left;" />
@@ -44,7 +45,8 @@
 				<div class="readme" data-bind="highlight: readMe"></div>
 
 			</div>
-			<i class="icon-info-sign"></i> <a href="javascript: void(0); return false;" class="open">Read more</a>
+			</div>
+			<i class="icon-info-sign"></i> <a href="#" class="open" data-bind="click: open">Read more</a>
 		</div>
 	</div>
 @EndSection
@@ -69,6 +71,7 @@
 		self.readMe = data.Readme;
 		self.url = data.Url;
 		self.version = data.Version;
+		self.isOpen = ko.observable();
 
 		self.authorUrl = ko.computed(function () {
 			return 'http://github.com/' + self.author;
@@ -81,6 +84,11 @@
 		self.demoName = ko.computed(function () {
 			return self.name.replace('Nancy.Demo.', '');
 		});
+
+		self.open = function() {
+			console.log("adding css class");
+			self.isOpen(true);
+		};
 	};
 
 	function DemosViewModel() {
