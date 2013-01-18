@@ -44,12 +44,6 @@
                 font-size: 13px;
             }
 
-            .widget ul {
-                list-style: none;
-                margin: 15px -15px 0;
-                padding: 0px 10px;
-                position: relative;
-            }
 
             .avatar {
                 margin-top: 2px;
@@ -71,6 +65,10 @@
             }
 
             .containerx .readme {
+                display: none;
+            }
+
+			.containerx .packages {
                 display: none;
             }
 
@@ -100,6 +98,14 @@
                 background: #fff;
                 float: left;
                 margin: 5px 5px;
+				height: 160px;
+            }
+            
+			.widget ul {
+                list-style: none;
+                margin: 15px -15px 0;
+                padding: 0px 10px;
+                position: relative;
             }
 
 			.widget .main {
@@ -170,6 +176,13 @@
 					$(element).html(moment(valueAccessor()).fromNow());
 				}
 			};
+
+			ko.bindingHandlers.highlight = {
+                update: function (element, valueAccessor) {
+                    var value = hljs.highlightAuto(ko.utils.unwrapObservable(valueAccessor())).value;
+                    $(element).html(value);
+                }
+            };
 
 			ko.bindingHandlers.masonry = {
 				update: function(element, valueAccessor, allBindingsAccessor) {

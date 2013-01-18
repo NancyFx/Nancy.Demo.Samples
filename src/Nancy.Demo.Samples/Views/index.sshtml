@@ -2,7 +2,7 @@
 
 @Section['Content']
 
-    <div data-bind="foreach: demos, visible: demos().length, masonry: { columnWidth: 425, isAnimated: true }">
+    <div data-bind="foreach: { data: demos, afterRender: viewRenderComplete }, visible: demos().length, masonry: { columnWidth: 425, isAnimated: true }">
         <div class="widget">
 			<div class="content">
                 <a href='#' data-bind="attr: { href: authorUrl }">
@@ -26,7 +26,7 @@
 						Last updated: <span data-bind="date: lastCommit"></span>
 					</p>
         
-					<div data-bind="visible: packages.length">
+					<div class="packages" data-bind="visible: packages.length">
 						Packages used in this sample
 						<div class="well well-small">
 							<ul data-bind="foreach: packages">
@@ -50,6 +50,15 @@
 @EndSection
 
 @Section['Scripts']
+
+	function viewRenderComplete() {
+        hljs.tabReplace = '    ';
+        hljs.initHighlighting();
+ 
+        $(".open").click(function () {
+            $.fancybox({ content: $('<div/>').addClass('list-widget').html($('.content', $(this).parent()).html()) });
+        });
+    };
 
     function DemoModel(data) {
         var self = this
