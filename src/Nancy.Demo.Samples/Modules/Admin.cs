@@ -27,7 +27,7 @@ namespace Nancy.Demo.Samples.Modules
                 return Response.AsRedirect("~/contributors");
             };
 
-            Post["/refresh"] = parameters =>
+            Post["/contributors/refresh"] = parameters =>
             {
                 var model =
                     contributorRepository.GetAll();
