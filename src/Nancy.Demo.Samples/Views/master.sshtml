@@ -180,8 +180,10 @@
 			ko.bindingHandlers.highlight = {
 				update: function (element, valueAccessor) {
 					var value = ko.utils.unwrapObservable(valueAccessor()) || '';
-					var highlighted = hljs.highlightAuto(value).value;
-					$(element).html(highlighted);
+					$(element).html(value);
+					$(element).children('pre, code').each(function() {
+						hljs.highlightBlock(this)
+					});
 				}
 			};
 
