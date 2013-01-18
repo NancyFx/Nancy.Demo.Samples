@@ -44,7 +44,7 @@
 				<div class="readme" data-bind="highlight: readMe"></div>
 
 			</div>
-			<i class="icon-info-sign"></i> <a href="javascript: void(0); return false;" class="open">Read more</a>
+			<i class="icon-info-sign"></i> <a href="#" data-bind="modal: true" class="open">Read more</a>
 		</div>
 	</div>
 @EndSection
@@ -81,6 +81,17 @@
 		self.demoName = ko.computed(function () {
 			return self.name.replace('Nancy.Demo.', '');
 		});
+	};
+
+	ko.bindingHandlers.modal = {
+		update: function (element, valueAccessor) {
+			$(element).click(function () {
+				var content = $('.content', $(element).parent()).html()
+				$.fancybox({
+					content: $('<div/>').addClass('list-widget').html(content)
+				 });
+			});
+		}
 	};
 
 	function DemosViewModel() {
