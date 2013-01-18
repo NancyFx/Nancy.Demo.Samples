@@ -25,25 +25,23 @@
 	@EndIf
 
 	<h2>Contributors</h2>
-	
 
-    <div data-bind="foreach: contributors, visible: contributors().length" style="display: none">
-		
-        <div class="widget">
-            <a href='#' data-bind="attr: { href: url }">
-                <img data-bind="attr: { src: avatarUrl }" alt="" class="avatar" style="float: left;" />
-            </a>
+    <div data-bind="foreach: contributors, visible: contributors().length, masonry: { columnWidth: 425, isAnimated: true }">
+		<div class="widget">
+			<a href='#' data-bind="attr: { href: url }">
+				<img data-bind="attr: { src: avatarUrl }" alt="" class="avatar" style="float: left;" />
+			</a>
 
-            <div class="list-head clearfix">
-                <h3>
-                    <a href='#' data-bind="attr: { href: username }, text: fullName">
-                    </a>
-                </h3>
+			<div class="list-head clearfix">
+				<h3>
+					<a href='#' data-bind="attr: { href: username }, text: fullName">
+					</a>
+				</h3>
 				@IfNotNull.Context.CurrentUser
 					<i class="icon-trash"></i> <a href='#' class="delete" data-bind="click: remove">Delete</a>
 				@EndIf
-            </div>
-        <div>
+			</div>
+		</div>
     </div>
 
 @EndSection&

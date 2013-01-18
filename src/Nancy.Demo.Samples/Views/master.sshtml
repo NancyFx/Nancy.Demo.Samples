@@ -42,7 +42,7 @@
                 color: #777;
                 margin-top: 0px;
                 font-size: 13px;
-                }
+            }
 
             .widget ul {
                 list-style: none;
@@ -56,33 +56,44 @@
                 border-radius: 15px;
                 width: 48px;
                 height: 48px;
-                }
-
-            .container div.widget {
-                width: 380px;
             }
 
             .readme {
                 margin-top: 20px;
             }
 
-			.container .bulk {
+			.containerx {
+				margin: 0 190px;
+			}
+
+			.containerx .bulk {
                 background-color: white;
             }
 
-            .container .readme {
+            .containerx .readme {
                 display: none;
             }
 
-            .container .widget .main {
+			.containerx div.widget {
+                width: 380px;
+            }
+
+            .containerx .widget .main {
                 display: block;
             }
 
-            .widget .main {
-                display: none;
+            html h1, html h2, html h3, html h4 {
+                font-family: 'proxima-nova', 'Helvetica Neue', Helvetica,Arial, sans-serif;
+                color: #111;
+                text-rendering: optimizelegibility;
             }
 
-            .widget {
+			.widgets {
+				background-color: pink;
+				overflow: hidden;
+			}
+
+			.widget {
                 border: 1px solid #ddd;
                 border-radius: 3px;
                 padding: 15px;
@@ -91,7 +102,11 @@
                 margin: 5px 5px;
             }
 
-            .widget h3, h1 {
+			.widget .main {
+                display: none;
+            }
+
+			.widget h3, h1 {
                 font-weight: normal;
                 color: #dd390d;
                 font-size: 20px;
@@ -99,23 +114,13 @@
                 margin: 0;
                 font-size: 20px;
                 line-height: 1.3;
-                }
-
-            html h1, html h2, html h3, html h4 {
-                font-family: 'proxima-nova', 'Helvetica Neue', Helvetica,Arial, sans-serif;
-                color: #111;
-                text-rendering: optimizelegibility;
             }
 
             .widget h3 a {
                 font-weight: normal;
                 color: #dd390d;
             }
-
-			.widgets {
-				background-color: pink;
-				overflow: hidden;
-			}
+			
         </style>
 
     </head>
@@ -123,7 +128,7 @@
         
         <div class="navbar navbar-fixed-top">
           <div class="navbar-inner">
-            <div class="container">
+            <div class="containerx">
               <a class="brand" href="/">Nancy.Demo.Samples</a>
                 <ul class="nav">
                     <li><a href="/">Home</a></li> 
@@ -145,7 +150,7 @@
           </div>
         </div>
 
-        <div class="container bulk">
+        <div class="containerx bulk">
             @Section['Content']
         </div>
         
@@ -159,6 +164,29 @@
 
 		<script>
 			@Section['Scripts']
+			
+			ko.bindingHandlers.date = {
+				update: function(element, valueAccessor) {
+					$(element).html(moment(valueAccessor()).fromNow());
+				}
+			};
+
+			ko.bindingHandlers.masonry = {
+				update: function(element, valueAccessor, allBindingsAccessor) {
+					var $element = $(element),
+						list = ko.utils.unwrapObservable(allBindingsAccessor().foreach)
+						masonry = ko.utils.unwrapObservable(valueAccessor())
+        
+					if ($element.data('masonry'))
+						$element.masonry('destroy')
+            
+					if (!list.length)
+						return
+
+					$element.masonry(masonry)
+				}
+			}
+
 		</script>
 
     </body>
