@@ -26,7 +26,7 @@
 
 	<h2>Contributors</h2>
 
-    <div data-bind="foreach: contributors, visible: contributors().length, masonry: { columnWidth: 425, isAnimated: true }">
+	<div data-bind="foreach: contributors, visible: contributors().length, masonry: { columnWidth: 425, isAnimated: true }">
 		<div class="widget">
 			<a href='#' data-bind="attr: { href: url }">
 				<img data-bind="attr: { src: avatarUrl }" alt="" class="avatar" style="float: left;" />
@@ -42,58 +42,60 @@
 				@EndIf
 			</div>
 		</div>
-    </div>
+	</div>
 
-@EndSection&
+@EndSection
 
 @Section['Scripts']
 
-    function ContributorModel(data, onRemoved) {
-        var self = this
+	$(function() {
+		ko.applyBindings(new ContributorsViewModel());
+	});
 
-        self.avatarUrl = data.AvatarUrl;
-        self.id = data.Id,
-        self.name = data.Name;
-        self.url = data.Url;
-        self.username = data.Username;
+	function ContributorModel(data, onRemoved) {
+		var self = this
 
-        self.fullName = ko.computed(function () {
-            return self.username + ' (' + self.name + ')';
-        });
+		self.avatarUrl = data.AvatarUrl;
+		self.id = data.Id,
+		self.name = data.Name;
+		self.url = data.Url;
+		self.username = data.Username;
 
-        self.deleteUrl = ko.computed(function () {
-            return '/contributors/' + self.username;
-        });
+		self.fullName = ko.computed(function () {
+			return self.username + ' (' + self.name + ')';
+		});
 
-         self.remove = function(data, event) {
-            $.ajax({
-                type: 'DELETE',
-                url: '/contributors/' + self.username,
-                success: function() {
-                    onRemoved(self);
-                }
-            });
-        };
-      
-    };
+		self.deleteUrl = ko.computed(function () {
+			return '/contributors/' + self.username;
+		});
 
-    function ContributorsViewModel() {
-        var self = this;
+		 self.remove = function(data, event) {
+			$.ajax({
+				type: 'DELETE',
+				url: '/contributors/' + self.username,
+				success: function() {
+					onRemoved(self);
+				}
+			});
+		};
+	  
+	};
 
-        self.contributors = ko.observableArray();
+	function ContributorsViewModel() {
+		var self = this;
 
-        $.getJSON("/api/contributors", function (response) {
-            var mapped = $.map(response, function (repo) {
-                return new ContributorModel(repo, self.onContributorRemoved);
-            });
-            self.contributors(mapped);
-        });
+		self.contributors = ko.observableArray();
 
-        self.onContributorRemoved = function(contributor) {
-            self.contributors.remove(contributor);
-        }
-    };
+		$.getJSON("/api/contributors", function (response) {
+			var mapped = $.map(response, function (repo) {
+				return new ContributorModel(repo, self.onContributorRemoved);
+			});
+			self.contributors(mapped);
+		});
 
-    ko.applyBindings(new ContributorsViewModel());
+		self.onContributorRemoved = function(contributor) {
+			self.contributors.remove(contributor);
+		}
+	};
 
 @EndSection

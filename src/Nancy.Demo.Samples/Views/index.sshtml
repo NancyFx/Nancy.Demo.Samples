@@ -2,30 +2,30 @@
 
 @Section['Content']
 
-    <div data-bind="foreach: { data: demos, afterRender: viewRenderComplete }, visible: demos().length, masonry: { columnWidth: 425, isAnimated: true }">
-        <div class="widget">
+	<div data-bind="foreach: demos, visible: demos().length, masonry: { columnWidth: 425, isAnimated: true }">
+		<div class="widget">
 			<div class="content">
-                <a href='#' data-bind="attr: { href: authorUrl }">
-                    <img data-bind="attr: { src: gravatar }" alt="" class="avatar" style="float: left;" />
-                </a>
+				<a href='#' data-bind="attr: { href: authorUrl }">
+					<img data-bind="attr: { src: gravatar }" alt="" class="avatar" style="float: left;" />
+				</a>
 
-                <div class="list-head clearfix">
-                    <h3>
-                        <a href='#' data-bind="attr: { href: url }, text: demoName"></a>
-                    </h3>
-        
-                    <div id="list-meta">
-                        version <span data-bind="text: version"></span> by <a href='#' data-bind="attr: { href: authorUrl }, text: author"></a>
-                    </div>
-                </div>
+				<div class="list-head clearfix">
+					<h3>
+						<a href='#' data-bind="attr: { href: url }, text: demoName"></a>
+					</h3>
+		
+					<div id="list-meta">
+						version <span data-bind="text: version"></span> by <a href='#' data-bind="attr: { href: authorUrl }, text: author"></a>
+					</div>
+				</div>
 
-                <div class="main">
+				<div class="main">
 					<p class="clearfix;" style="margin-top: 15px;" data-bind="text: description"></p>
-        
+		
 					<p>
 						Last updated: <span data-bind="date: lastCommit"></span>
 					</p>
-        
+		
 					<div class="packages" data-bind="visible: packages.length">
 						Packages used in this sample
 						<div class="well well-small">
@@ -41,65 +41,59 @@
 
 				</div>
 
-                <div class="readme" data-bind="html: readMe"></div>
+				<div class="readme" data-bind="highlight: readMe"></div>
 
-            </div>
-            <i class="icon-info-sign"></i> <a href="javascript: void(0); return false;" class="open">Read more</a>
-        </div>
-    </div>
+			</div>
+			<i class="icon-info-sign"></i> <a href="javascript: void(0); return false;" class="open">Read more</a>
+		</div>
+	</div>
 @EndSection
 
 @Section['Scripts']
 
-	function viewRenderComplete() {
-        hljs.tabReplace = '    ';
-        hljs.initHighlighting();
- 
-        $(".open").click(function () {
-            $.fancybox({ content: $('<div/>').addClass('list-widget').html($('.content', $(this).parent()).html()) });
-        });
-    };
+	$(function() {
+		hljs.tabReplace = '    ';
+		ko.applyBindings(new DemosViewModel());
+	});
 
-    function DemoModel(data) {
-        var self = this
+	function DemoModel(data) {
+		var self = this
 
-        self.author = data.Author;
-        self.description = data.Description;
-        self.gravatar = data.Gravatar;
-        self.hasNuget = data.HasNuget;
-        self.lastCommit = data.LastCommit;
-        self.name = data.Name;
+		self.author = data.Author;
+		self.description = data.Description;
+		self.gravatar = data.Gravatar;
+		self.hasNuget = data.HasNuget;
+		self.lastCommit = data.LastCommit;
+		self.name = data.Name;
 		self.packages = data.Packages;
-        self.readMe = data.Readme;
-        self.url = data.Url;
-        self.version = data.Version;
+		self.readMe = data.Readme;
+		self.url = data.Url;
+		self.version = data.Version;
 
-        self.authorUrl = ko.computed(function () {
-            return 'http://github.com/' + self.author;
-        });
+		self.authorUrl = ko.computed(function () {
+			return 'http://github.com/' + self.author;
+		});
 
 		self.nugetUrl = ko.computed(function() {
 			return 'http://nuget.org/packages/' + self.name;
 		});
 
-        self.demoName = ko.computed(function () {
-            return self.name.replace('Nancy.Demo.', '');
-        });
-    };
+		self.demoName = ko.computed(function () {
+			return self.name.replace('Nancy.Demo.', '');
+		});
+	};
 
-    function DemosViewModel() {
-        var self = this;
+	function DemosViewModel() {
+		var self = this;
 
-        self.demos = ko.observableArray();
+		self.demos = ko.observableArray();
 
-        $.getJSON("/api/demos", function (response) {
-            var mapped = $.map(response, function (demo) {
-                return new DemoModel(demo);
-            });
-            self.demos(mapped);
-        });
-    };
-
-	ko.applyBindings(new DemosViewModel());
+		$.getJSON("/api/demos", function (response) {
+			var mapped = $.map(response, function (demo) {
+				return new DemoModel(demo);
+			});
+			self.demos(mapped);
+		});
+	};
 
 @EndSection
