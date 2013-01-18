@@ -68,16 +68,20 @@
 				display: none;
 			}
 
-			.modal .readme {
-				display: block;
-			}
-
 			.containerx .packages {
 				display: none;
 			}
 
 			.containerx div.widget {
 				width: 380px;
+			}
+
+			.modal .readme {
+				display: block;
+			}
+
+			.modal .packages {
+				display: block;
 			}
 
 			.containerx .widget .main {
