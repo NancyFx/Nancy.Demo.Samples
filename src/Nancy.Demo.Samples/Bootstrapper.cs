@@ -35,7 +35,9 @@
         {
             base.ConfigureApplicationContainer(container);
             
-            var client = new MongoClient(ConnectionString);
+            var client = 
+                new MongoClient(ConnectionString);
+
             container.Register((c, p) => client.GetServer());
         }
 
@@ -43,7 +45,9 @@
         {
             base.ConfigureRequestContainer(container, context);
 
-            var server = container.Resolve<MongoServer>();
+            var server = 
+                container.Resolve<MongoServer>();
+
             container.Register((c, p) => server.GetDatabase("Demos"));
             container.Register<IDemoRepository, DefaultDemoRepository>();
             container.Register<IContributorRepository, DefaultContributorRepository>();
