@@ -21,7 +21,7 @@
 
         private readonly Regex assemblyVersionPattern = new Regex(@"AssemblyVersion\(\""(?<version>[0-9\.]*)\""\)", RegexOptions.Compiled);
         private readonly Regex nugetPackagesPattern = new Regex("(?:id=\"(?<name>Nancy(?:.+?)?)\" version=\"(?<version>.+?)\")", RegexOptions.Multiline | RegexOptions.Compiled);
-        private readonly Regex readMePattern = new Regex(@"[\`]{3}(?<language>.+?)?$", RegexOptions.Multiline | RegexOptions.Compiled);
+        private readonly Regex readMePattern = new Regex(@"[\`]{3}(?<language>.+?)(?:[\n\r]+)(?<content>.+?)(?:[\n\r]+)[\`]{3}", RegexOptions.Singleline | RegexOptions.Compiled);
 
         /// <summary>
         /// Creates a new instance of the <see cref="DefaultDemoModelFactory"/> class, using the provided
@@ -119,12 +119,15 @@
                     HttpUtility.HtmlEncode(content);
 
                 content =
-                    readMePattern.Replace(content, x =>
+                    readMePattern.Replace(content, capture =>
                     {
-                        var language =
-                            x.Groups["language"].Value;
+                        var value = capture.Groups[0]
+                            .Value
+                            .Replace(string.Concat("```", capture.Groups["language"]), string.Empty)
+                            .Replace("```", string.Empty)
+                            .Trim(new[] {'\r', '\n'});
 
-                        return (string.IsNullOrWhiteSpace(language)) ? "</pre></code>" : "<pre><code>";
+                        return string.Concat("<pre><code>", value, "</code></pre>");
                     });
 
                 var renderer =
