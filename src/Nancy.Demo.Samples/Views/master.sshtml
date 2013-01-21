@@ -86,33 +86,7 @@
 				text-rendering: optimizelegibility;
 			}
 
-			.widgets {
-				background-color: pink;
-				overflow: hidden;
-			}
-
-			.widget {
-				border: 1px solid #ddd;
-				border-radius: 3px;
-				padding: 15px;
-				background: #fff;
-				float: left;
-				margin: 5px 5px;
-				height: 160px;
-			}
-			
-			.widget ul {
-				list-style: none;
-				margin: 15px -15px 0;
-				padding: 0px 10px;
-				position: relative;
-			}
-
-			.widget .main {
-				display: none;
-			}
-
-			.widget h3, h1 {
+			h3, h1 {
 				font-weight: normal;
 				color: #dd390d;
 				font-size: 20px;
@@ -122,9 +96,30 @@
 				line-height: 1.3;
 			}
 
-			.widget h3 a {
+			h3 a {
 				font-weight: normal;
 				color: #dd390d;
+			}
+
+			ul {
+				list-style: none;
+				margin: 0;
+				padding: 5px;
+				position: relative;
+			}
+			
+			.widget {
+				border: 1px solid #ddd;
+				border-radius: 3px;
+				padding: 15px;
+				background: #fff;
+				float: left;
+				margin: 5px 5px;
+				height: 160px;
+			}
+
+			.widget .main {
+				display: none;
 			}
 			
 		</style>
