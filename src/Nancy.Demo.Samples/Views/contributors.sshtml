@@ -65,14 +65,10 @@
 			return self.username + ' (' + self.name + ')';
 		});
 
-		self.deleteUrl = ko.computed(function () {
-			return '/contributors/' + self.username;
-		});
-
-		 self.remove = function(data, event) {
+		self.remove = function(data, event) {
 			$.ajax({
 				type: 'DELETE',
-				url: '/contributors/' + self.username,
+				url: '/contributor/' + self.username,
 				success: function() {
 					onRemoved(self);
 				}

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using MongoDB.Driver;
+    using MongoDB.Driver.Builders;
     using Nancy.Demo.Samples.Models;
 
     /// <summary>
@@ -37,7 +38,7 @@
 
         public void DeleteByAuthor(string name)
         {
-            throw new NotImplementedException();
+            this.collection.Remove(Query<DemoModel>.Where(demo => demo.Author == name));
         }
 
         public IEnumerable<DemoModel> GetAll()

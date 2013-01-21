@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using MongoDB.Driver;
+    using MongoDB.Driver.Builders;
     using Nancy.Demo.Samples.Models;
 
     /// <summary>
@@ -11,7 +12,7 @@
     /// </summary>
     public interface IContributorRepository
     {
-        IEnumerable<ContributorModel> GetByUserName(string username);
+        void DeleteByUserName(string username);
 
         /// <summary>
         /// Gets all the contributors in the data store.
@@ -35,9 +36,9 @@
             this.collection = database.GetCollection<ContributorModel>("contributors");
         }
 
-        public IEnumerable<ContributorModel> GetByUserName(string username)
+        public void DeleteByUserName(string username)
         {
-            throw new NotImplementedException();
+            this.collection.Remove(Query<ContributorModel>.Where(contributor => contributor.Username == username));
         }
 
         public IEnumerable<ContributorModel> GetAll()

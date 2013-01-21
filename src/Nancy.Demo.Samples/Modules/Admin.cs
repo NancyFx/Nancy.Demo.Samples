@@ -11,18 +11,8 @@ namespace Nancy.Demo.Samples.Modules
 
             Delete["/contributor/{username}"] = parameters =>
             {
-                //var demosByContributor =
-                //    demoRepository.GetByUserName((string)parameters.username);
-
-                //foreach (var demoModel in demosByContributor)
-                //{
-                //    demoRepository.DeleteByAuthor(demoModel.Author);
-                //}
-
-                //var contributorByName =
-                //    contributorRepository.GetByUserName((string) parameters.username).Single();
-
-                //contributorRepository.DeleteByName(contributorByName.Username);
+                contributorRepository.DeleteByUserName((string)parameters.username);
+                demoRepository.DeleteByAuthor((string)parameters.username);
 
                 return Response.AsRedirect("~/contributors");
             };
