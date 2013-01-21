@@ -106,6 +106,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DefaultDemoModelFactory.cs" />
+    <Compile Include="Data\MongoDbContributorRepository.cs" />
+    <Compile Include="Data\MongoDbDemoRepository.cs" />
     <Compile Include="DefaultGitHubFileContentExtractor.cs" />
     <Compile Include="DefaultRepositoryNugetChecker.cs" />
     <Compile Include="IRepositoryNugetChecker.cs" />

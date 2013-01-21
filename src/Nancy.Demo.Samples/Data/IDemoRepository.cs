@@ -1,9 +1,6 @@
 ﻿namespace Nancy.Demo.Samples.Data
 {
-    using System;
     using System.Collections.Generic;
-    using MongoDB.Driver;
-    using MongoDB.Driver.Builders;
     using Nancy.Demo.Samples.Models;
 
     /// <summary>
@@ -12,6 +9,10 @@
     /// </summary>
     public interface IDemoRepository
     {
+        /// <summary>
+        /// Deletes demos by the specified author.
+        /// </summary>
+        /// <param name="name">The name of the author to delete the demos for.</param>
         void DeleteByAuthor(string name);
 
         /// <summary>
@@ -25,30 +26,5 @@
         /// </summary>
         /// <param name="demo">The <see cref="DemoModel"/> instance to persist</param>
         void Persist(DemoModel demo);
-    }
-
-    public class DefaultDemoRepository : IDemoRepository
-    {
-        private readonly MongoCollection<DemoModel> collection;
-
-        public DefaultDemoRepository(MongoDatabase database)
-        {
-            this.collection = database.GetCollection<DemoModel>("demos");
-        }
-
-        public void DeleteByAuthor(string name)
-        {
-            this.collection.Remove(Query<DemoModel>.Where(demo => demo.Author == name));
-        }
-
-        public IEnumerable<DemoModel> GetAll()
-        {
-            return this.collection.FindAll();
-        }
-
-        public void Persist(DemoModel demo)
-        {
-            collection.Insert(demo);
-        }
     }
 }

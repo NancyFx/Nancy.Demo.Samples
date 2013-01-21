@@ -49,8 +49,8 @@
                 container.Resolve<MongoServer>();
 
             container.Register((c, p) => server.GetDatabase("Demos"));
-            container.Register<IDemoRepository, DefaultDemoRepository>();
-            container.Register<IContributorRepository, DefaultContributorRepository>();
+            container.Register<IDemoRepository, MongoDbDemoRepository>();
+            container.Register<IContributorRepository, MongoDbContributorRepository>();
         }
     }
 }

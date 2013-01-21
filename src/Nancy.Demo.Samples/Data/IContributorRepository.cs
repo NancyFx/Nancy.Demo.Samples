@@ -1,9 +1,6 @@
 ﻿namespace Nancy.Demo.Samples.Data
 {
-    using System;
     using System.Collections.Generic;
-    using MongoDB.Driver;
-    using MongoDB.Driver.Builders;
     using Nancy.Demo.Samples.Models;
 
     /// <summary>
@@ -12,6 +9,10 @@
     /// </summary>
     public interface IContributorRepository
     {
+        /// <summary>
+        /// Deletes a contributor based on the provided <paramref name="username"/>.
+        /// </summary>
+        /// <param name="username">The username of the contributor to delete.</param>
         void DeleteByUserName(string username);
 
         /// <summary>
@@ -25,30 +26,5 @@
         /// </summary>
         /// <param name="contributor">The <see cref="ContributorModel"/> instance to persist</param>
         void Persist(ContributorModel contributor);
-    }
-
-    public class DefaultContributorRepository : IContributorRepository
-    {
-        private readonly MongoCollection<ContributorModel> collection;
-
-        public DefaultContributorRepository(MongoDatabase database)
-        {
-            this.collection = database.GetCollection<ContributorModel>("contributors");
-        }
-
-        public void DeleteByUserName(string username)
-        {
-            this.collection.Remove(Query<ContributorModel>.Where(contributor => contributor.Username == username));
-        }
-
-        public IEnumerable<ContributorModel> GetAll()
-        {
-            return this.collection.FindAll();
-        }
-
-        public void Persist(ContributorModel contributor)
-        {
-            collection.Insert(contributor);
-        }
     }
 }
