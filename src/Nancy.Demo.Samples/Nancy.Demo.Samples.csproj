@@ -111,8 +111,8 @@
     <Compile Include="DefaultGitHubFileContentExtractor.cs" />
     <Compile Include="DefaultRepositoryNugetChecker.cs" />
     <Compile Include="IRepositoryNugetChecker.cs" />
-    <Compile Include="Data\DefaultGitHubUserFactory.cs" />
-    <Compile Include="Data\IGitHubUserFactory.cs" />
+    <Compile Include="Data\DefaultContributorModelFactory.cs" />
+    <Compile Include="Data\IContributorModelFactory.cs" />
     <Compile Include="Data\IContributorRepository.cs" />
     <Compile Include="IUserDatabase.cs" />
     <Compile Include="Models\ContributorModel.cs" />

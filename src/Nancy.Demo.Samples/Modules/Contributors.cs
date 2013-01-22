@@ -4,7 +4,7 @@ namespace Nancy.Demo.Samples.Modules
 
     public class Contributors : NancyModule
     {
-        public Contributors(IContributorRepository contributorRepository, IDemoModelFactory demoModelFactory, IGitHubUserFactory factory)
+        public Contributors(IContributorRepository contributorRepository, IDemoModelFactory demoModelFactory, IContributorModelFactory factory)
             : base("/contributors")
         {
             Get["/"] = x => {

@@ -5,7 +5,7 @@
     /// <summary>
     /// Defines the functionality for retreiving information about a GitHub user.
     /// </summary>
-    public interface IGitHubUserFactory
+    public interface IContributorModelFactory
     {
         /// <summary>
         /// Retrieves information about a GitHub user that is identified by the provided <paramref name="username"/>.
