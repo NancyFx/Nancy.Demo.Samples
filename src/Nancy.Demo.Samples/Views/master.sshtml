@@ -6,7 +6,7 @@
 		<link href="@Path['~/content/css/bootstrap.min.css'];" rel="stylesheet">
 		<link href="@Path['~/content/css/font-awesome.css'];" rel="stylesheet">
 		<link href="@Path['~/content/css/jquery.fancybox.css'];" rel="stylesheet">
-		<link href="http://yandex.st/highlightjs/7.3/styles/default.min.css" rel="stylesheet" >
+		<link href="//yandex.st/highlightjs/7.3/styles/default.min.css" rel="stylesheet" >
 
 		<style type="text/css">
 			
