@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-namespace Nancy.Demo.Samples
+﻿namespace Nancy.Demo.Samples
 {
     using System.IO;
     using Authentication.Forms;
