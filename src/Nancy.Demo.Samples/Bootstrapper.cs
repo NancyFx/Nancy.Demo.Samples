@@ -5,6 +5,7 @@
     using Cryptography;
     using Data;
     using Diagnostics;
+    using Extensions;
     using MongoDB.Driver;
     using Nancy.Bootstrapper;
     using Nancy.TinyIoc;
@@ -36,7 +37,9 @@
 
             var config = new Configuration();
 
-            var binDirectory = Path.GetDirectoryName(this.GetType().Assembly.Location);
+            var binDirectory = 
+                Path.GetDirectoryName(this.GetType().GetAssemblyPath());
+
             var configPath =
                 Path.Combine(binDirectory ?? @".\", "deploy.config");
 
