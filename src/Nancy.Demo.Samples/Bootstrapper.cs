@@ -13,19 +13,8 @@
     {
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
-            var config = 
-                new Configuration();
-
-            var rootPathProvider =
-                container.Resolve<IRootPathProvider>();
-
-            var configPath =
-                Path.Combine(rootPathProvider.GetRootPath(), "deploy.config");
-
-            ConfigLoader.Load(configPath, config);
-
             base.ApplicationStartup(container, pipelines);
-            
+
             var cryptographyConfiguration = new CryptographyConfiguration(
                 new RijndaelEncryptionProvider(new PassphraseKeyGenerator(Configuration.EncryptionKey, new byte[] { 8, 2, 10, 4, 68, 120, 7, 14 })),
                 new DefaultHmacProvider(new PassphraseKeyGenerator(Configuration.HmacKey, new byte[] { 1, 20, 73, 49, 25, 106, 78, 86 })));
@@ -44,8 +33,16 @@
         protected override void ConfigureApplicationContainer(TinyIoCContainer container)
         {
             base.ConfigureApplicationContainer(container);
-            
-            var client = 
+
+            var config = new Configuration();
+
+            var binDirectory = Path.GetDirectoryName(this.GetType().Assembly.Location);
+            var configPath =
+                Path.Combine(binDirectory ?? @".\", "deploy.config");
+
+            ConfigLoader.Load(configPath, config);
+
+            var client =
                 new MongoClient(Configuration.ConnectionString);
 
             container.Register((c, p) => client.GetServer());
@@ -55,7 +52,7 @@
         {
             base.ConfigureRequestContainer(container, context);
 
-            var server = 
+            var server =
                 container.Resolve<MongoServer>();
 
             container.Register((c, p) => server.GetDatabase("Demos"));
