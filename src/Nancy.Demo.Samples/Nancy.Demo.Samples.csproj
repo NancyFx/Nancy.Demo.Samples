@@ -95,6 +95,10 @@
     <Content Include="Content\js\jquery.masonry.min.js" />
     <Content Include="Content\js\knockout-2.2.0.js" />
     <Content Include="Content\js\moment.min.js" />
+    <None Include="deploy.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="Views\login.sshtml" />
     <Content Include="Views\contributors.sshtml" />
     <Content Include="Views\master.sshtml" />
@@ -105,6 +109,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigLoader.cs" />
+    <Compile Include="Configuration.cs" />
     <Compile Include="Data\DefaultDemoModelFactory.cs" />
     <Compile Include="Data\MongoDbContributorRepository.cs" />
     <Compile Include="Data\MongoDbDemoRepository.cs" />

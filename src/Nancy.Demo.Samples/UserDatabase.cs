@@ -12,7 +12,7 @@
 
         public UserDatabase()
         {
-            users.Add(new Tuple<string, string, Guid>("admin", "password", new Guid("55E1E49E-B7E8-4EEA-8459-7A906AC4D4C0")));
+            users.Add(new Tuple<string, string, Guid>("admin", Configuration.Password, new Guid("55E1E49E-B7E8-4EEA-8459-7A906AC4D4C0")));
         }
 
         public IUserIdentity GetUserFromIdentifier(Guid identifier, NancyContext context)

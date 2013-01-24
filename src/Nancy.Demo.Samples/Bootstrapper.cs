@@ -1,26 +1,36 @@
 ﻿namespace Nancy.Demo.Samples
 {
+    using System.IO;
     using Authentication.Forms;
     using Cryptography;
     using Data;
+    using Diagnostics;
     using MongoDB.Driver;
     using Nancy.Bootstrapper;
     using Nancy.TinyIoc;
 
     public class Bootstrapper : DefaultNancyBootstrapper
     {
-        //private const string ConnectionString = @"mongodb://localhost:27017";
-        private const string ConnectionString = @"mongodb://test:test@linus.mongohq.com:10000";
-
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
+            var config = 
+                new Configuration();
+
+            var rootPathProvider =
+                container.Resolve<IRootPathProvider>();
+
+            var configPath =
+                Path.Combine(rootPathProvider.GetRootPath(), "deploy.config");
+
+            ConfigLoader.Load(configPath, config);
+
             base.ApplicationStartup(container, pipelines);
-
+            
             var cryptographyConfiguration = new CryptographyConfiguration(
-                new RijndaelEncryptionProvider(new PassphraseKeyGenerator("SuperSecretPass", new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 })),
-                new DefaultHmacProvider(new PassphraseKeyGenerator("UberSuperSecure", new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 })));
+                new RijndaelEncryptionProvider(new PassphraseKeyGenerator(Configuration.EncryptionKey, new byte[] { 8, 2, 10, 4, 68, 120, 7, 14 })),
+                new DefaultHmacProvider(new PassphraseKeyGenerator(Configuration.HmacKey, new byte[] { 1, 20, 73, 49, 25, 106, 78, 86 })));
 
-            var config =
+            var authenticationConfiguration =
                 new FormsAuthenticationConfiguration()
                 {
                     CryptographyConfiguration = cryptographyConfiguration,
@@ -28,7 +38,7 @@
                     UserMapper = container.Resolve<IUserMapper>(),
                 };
 
-            FormsAuthentication.Enable(pipelines, config);
+            FormsAuthentication.Enable(pipelines, authenticationConfiguration);
         }
 
         protected override void ConfigureApplicationContainer(TinyIoCContainer container)
@@ -36,7 +46,7 @@
             base.ConfigureApplicationContainer(container);
             
             var client = 
-                new MongoClient(ConnectionString);
+                new MongoClient(Configuration.ConnectionString);
 
             container.Register((c, p) => client.GetServer());
         }
@@ -51,6 +61,11 @@
             container.Register((c, p) => server.GetDatabase("Demos"));
             container.Register<IDemoRepository, MongoDbDemoRepository>();
             container.Register<IContributorRepository, MongoDbContributorRepository>();
+        }
+
+        protected override DiagnosticsConfiguration DiagnosticsConfiguration
+        {
+            get { return new DiagnosticsConfiguration() { Password = Configuration.Password }; }
         }
     }
 }
