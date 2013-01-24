@@ -62,6 +62,7 @@
                 .Select(repo => new DemoModel {
                     Id = Guid.NewGuid().ToString(),
                     Name = repo.name,
+                    CreatedAt = DateTime.Parse(repo.created_at),
                     Description = repo.description,
                     Author = repo.owner.login,
                     Gravatar = repo.owner.avatar_url,
