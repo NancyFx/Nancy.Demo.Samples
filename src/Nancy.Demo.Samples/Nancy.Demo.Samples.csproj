@@ -95,10 +95,6 @@
     <Content Include="Content\js\jquery.masonry.min.js" />
     <Content Include="Content\js\knockout-2.2.0.js" />
     <Content Include="Content\js\moment.min.js" />
-    <None Include="deploy.config">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <Content Include="Views\login.sshtml" />
     <Content Include="Views\contributors.sshtml" />
     <Content Include="Views\master.sshtml" />
