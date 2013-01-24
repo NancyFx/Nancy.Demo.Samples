@@ -14,6 +14,8 @@
 
         public bool HasNuget { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+
         public DateTime IndexedAt { get; set; }
 
         public DateTime LastCommit { get; set; }
@@ -29,5 +31,10 @@
         public string Url { get; set; }
 
         public string Version { get; set; }
+
+        public bool IsNew
+        {
+            get { return DateTime.Now.Date.Subtract(this.CreatedAt).Days < 30; }
+        }
     }
 }

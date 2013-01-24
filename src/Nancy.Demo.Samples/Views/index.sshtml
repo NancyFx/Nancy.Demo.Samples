@@ -4,6 +4,13 @@
 
 	<div data-bind="foreach: demos, visible: demos().length, masonry: { columnWidth: 425, isAnimated: true }">
 		<div class="widget">
+
+			<div class="github-fork-ribbon-wrapper right" data-bind="visible: isNew">
+				<div class="github-fork-ribbon">
+					<a href='#' data-bind="attr: { href: authorUrl }">New!</a>
+				</div>
+			</div>
+
 			<div class="content">
 				<a href='#' data-bind="attr: { href: authorUrl }">
 					<img data-bind="attr: { src: gravatar }" alt="" class="avatar" style="float: left;" />
@@ -69,6 +76,7 @@
 		self.readMe = data.Readme;
 		self.url = data.Url;
 		self.version = data.Version;
+		self.isNew = data.IsNew;
 
 		self.authorUrl = ko.computed(function () {
 			return 'http://github.com/' + self.author;

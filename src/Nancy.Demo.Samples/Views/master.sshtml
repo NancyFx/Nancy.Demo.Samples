@@ -7,6 +7,7 @@
 		<link href="@Path['~/content/css/font-awesome.css'];" rel="stylesheet">
 		<link href="@Path['~/content/css/jquery.fancybox.css'];" rel="stylesheet">
 		<link href="//yandex.st/highlightjs/7.3/styles/default.min.css" rel="stylesheet" >
+		<link href="//simonwhitaker.github.com/github-fork-ribbon-css/gh-fork-ribbon.css" rel="stylesheet">
 
 		<style type="text/css">
 			
@@ -120,6 +121,14 @@
 
 			.widget .main {
 				display: none;
+			}
+
+			.open {
+				position: relative;
+			}
+
+			.github-fork-ribbon {
+				background-color: rgb(2, 157, 196);
 			}
 			
 		</style>
