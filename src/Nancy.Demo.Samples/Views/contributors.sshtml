@@ -3,24 +3,26 @@
 @Section['Content']
 
 	@IfNotNull.Context.CurrentUser
-		<div id="class="well well-small">
-			<form class="form-horizontal" method="post">
-				<legend>Please enter github username of user to add</legend>
-				<label>Username</label>
-				<input type="text" name="username" placeholder="Enter the github username" />
-				<input type="submit" value="Add" class="btn btn-primary"/>
-			</form>
+		<div class="hero-unit">
+			<div id="class="well well-small">
+				<form class="form-horizontal" method="post">
+					<legend>Please enter github username of user to add</legend>
+					<label>Username</label>
+					<input type="text" name="username" placeholder="Enter the github username" />
+					<input type="submit" value="Add" class="btn btn-primary"/>
+				</form>
 
-			<form class="form-horizontal" method="post" action="/contributors/refresh">
-				<legend>Click to refresh</legend>
-				<p>
-					When you press this button, the GitHub accounts of the contributors will be
-					re-scanned to detect new demos and updates to existing. It invokes the
-					<strong>/contributors/refresh</strong> route and you can invoke this from
-					a scheduled task if you want to refresh at an interval.
-				</p>
-				<input type="submit" value="Refresh demos" class="btn btn-success"/>
-			</form>
+				<form class="form-horizontal" method="post" action="/contributors/refresh">
+					<legend>Click to refresh</legend>
+					<p>
+						When you press this button, the GitHub accounts of the contributors will be
+						re-scanned to detect new demos and updates to existing. It invokes the
+						<strong>/contributors/refresh</strong> route and you can invoke this from
+						a scheduled task if you want to refresh at an interval.
+					</p>
+					<input type="submit" value="Refresh demos" class="btn btn-success"/>
+				</form>
+			</div>
 		</div>
 	@EndIf
 
