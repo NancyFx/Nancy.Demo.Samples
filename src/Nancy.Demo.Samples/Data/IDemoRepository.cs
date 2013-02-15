@@ -10,6 +10,11 @@
     public interface IDemoRepository
     {
         /// <summary>
+        /// Deletes all demos.
+        /// </summary>
+        void DeleteAll();
+
+        /// <summary>
         /// Deletes demos by the specified author.
         /// </summary>
         /// <param name="name">The name of the author to delete the demos for.</param>

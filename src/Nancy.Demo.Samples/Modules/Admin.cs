@@ -22,6 +22,8 @@ namespace Nancy.Demo.Samples.Modules
                 var model =
                     contributorRepository.GetAll();
 
+                demoRepository.DeleteAll();
+
                 foreach (var contributorModel in model)
                 {
                     var demos =

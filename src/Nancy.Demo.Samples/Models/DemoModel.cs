@@ -34,7 +34,7 @@
 
         public bool IsNew
         {
-            get { return DateTime.Now.Date.Subtract(this.CreatedAt).Days < 30; }
+            get { return DateTime.Now.Date.Subtract(this.CreatedAt).Days < 90; }
         }
     }
 }

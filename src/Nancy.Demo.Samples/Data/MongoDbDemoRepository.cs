@@ -23,6 +23,14 @@
         }
 
         /// <summary>
+        /// Deletes all demos.
+        /// </summary>
+        public void DeleteAll()
+        {
+            this.collection.Drop();
+        }
+
+        /// <summary>
         /// Deletes demos by the specified author.
         /// </summary>
         /// <param name="name">The name of the author to delete the demos for.</param>
