@@ -110,6 +110,7 @@
     <Compile Include="Data\DefaultDemoModelFactory.cs" />
     <Compile Include="Data\MongoDbContributorRepository.cs" />
     <Compile Include="Data\MongoDbDemoRepository.cs" />
+    <Compile Include="Data\NugetPackageInformation.cs" />
     <Compile Include="DefaultGitHubFileContentExtractor.cs" />
     <Compile Include="DefaultRepositoryNugetChecker.cs" />
     <Compile Include="IRepositoryNugetChecker.cs" />
