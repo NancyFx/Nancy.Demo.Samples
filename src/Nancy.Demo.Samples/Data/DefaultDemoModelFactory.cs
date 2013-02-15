@@ -81,13 +81,12 @@
         private static IEnumerable<DemoModel> GetValid(IEnumerable<DemoModel> demos)
         {
             return demos;
-            //.Where(demo => demo.HasNuget)
             //.Where(demo => !string.IsNullOrWhiteSpace(demo.Readme))
             //.Where(demo => !string.IsNullOrWhiteSpace(demo.Version))
             //.Where(demo => !string.IsNullOrWhiteSpace(demo.Description));
         }
 
-        private IEnumerable<Package> ExtractNugetPackages(string owner, string repositoryName)
+        private IEnumerable<NugetPackageInformation> ExtractNugetPackages(string owner, string repositoryName)
         {
             var relativeFilePath =
                 string.Format("contents/src/{0}/packages.config", repositoryName);
@@ -96,12 +95,12 @@
             {
                 if (string.IsNullOrWhiteSpace(content))
                 {
-                    return Enumerable.Empty<Package>();
+                    return Enumerable.Empty<NugetPackageInformation>();
                 }
 
                 return nugetPackagesPattern.Matches(content)
                     .OfType<Match>()
-                    .Select(match => new Package {
+                    .Select(match => new NugetPackageInformation {
                         Name = match.Groups["name"].Value,
                         Version = match.Groups["version"].Value});
             });
@@ -153,10 +152,19 @@
         }
     }
 
-    public class Package
+    /// <summary>
+    /// Stores information about a Nuget package.
+    /// </summary>
+    public class NugetPackageInformation
     {
+        /// <summary>
+        /// The name of the package.
+        /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// The version of the package.
+        /// </summary>
         public string Version { get; set; }
     }
 }
