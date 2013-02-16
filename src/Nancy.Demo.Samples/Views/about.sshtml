@@ -2,15 +2,23 @@
 
 @Section['Content']
     <div class="hero-unit">
+		<h2>About</h2>
 		<p>
-			This demos shows a simple Nancy website that aggregates Nancy demo projects from GitHub accounts, that follows the
-			Nancy.Demo.xxxx naming convention. The SuperSimpleViewEngine is used along with <a href="http://knockoutjs.com/">Knockout</a>
-			to render the views.
+			Welcome to the Nancy Samples site!
 		</p>
 		<p>
-			<a href="http://www.10gen.com/products/mongodb">MongoDB</a> is used as the data store. In order to run the demo you need to
-			make sure you have a local instance, of MongoDB, running on your machine or edit the <em>Configuration.cs</em> class and
-			alter the connection string.
+			This site/demo shows a simple Nancy website that aggregates Nancy demo projects from multiple GitHub accounts that follow the
+			Nancy.Demo.xxxx naming convention.
+		</p>
+		<h2>The Tech</h2>
+		<p>
+			For rendering the views this site uses the SuperSimpleViewEngine, which is build into Nancy core, along with <a href="http://knockoutjs.com/">Knockout.js</a>
+			for binding data to the view.
+		</p>
+		<p>
+			On the storage front, we're using <a href="http://www.10gen.com/products/mongodb">MongoDB</a>, with the live samples site using <a href="http://mongohq.com/>MongoHQ</a>. 
+			If you're running locally you will need to make sure you have a local instance of MongoDB running on your machine, or edit the <em>Configuration.cs</em> class and
+			alter the connection string to point to your own MongoHQ account.
 		</p>
 	</div>
 @EndSection
