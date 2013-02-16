@@ -3,22 +3,14 @@
 @Section['Content']
     <div class="hero-unit">
 		<p>
-			This is a demo for showing how you can implement <a href="https://nopassword.alexsmolen.com/">NoPassword</a> authentication
-			in your Nancy applications.
+			This demos shows a simple Nancy website that aggregates Nancy demo projects from GitHub accounts, that follows the
+			Nancy.Demo.xxxx naming convention. The SuperSimpleViewEngine is used along with <a href="http://knockoutjs.com/">Knockout</a>
+			to render the views.
 		</p>
 		<p>
-			The demo uses the <a href="https://github.com/NancyFx/Nancy/wiki/Forms-authentication">Nancy.Authentication.Forms</a> package to 
-			perform authentication, but instead of directly logging the user in, it uses the <a href="http://nuget.org/packages/fluent-email">Fluent Email</a> 
-			Nuget to send the user an e-mail with the login token.
-		</p>
-		<p>
-			When the user clicks the link it will be taken to the site which will verify the token and log the user in. A cookie will be
-			generated which is then used to re-authenticate the user when visiting the site. As soon as the user logs out, the token will
-			be revoked (and the cookie removed) an can no longer be used.
-		</p>
-		<p>
-			In order to run this demo locally, on your machine, you need to make sure the mail settings, in web.config, are properly
-			configured. You can save the e-mails to your hard drive by using the following settings
+			<a href="http://www.10gen.com/products/mongodb">MongoDB</a> is used as the data store. In order to run the demo you need to
+			make sure you have a local instance, of MongoDB, running on your machine or edit the <em>Configuration.cs</em> class and
+			alter the connection string.
 		</p>
 	</div>
 @EndSection
