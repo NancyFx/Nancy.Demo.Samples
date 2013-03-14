@@ -2,7 +2,7 @@
 
 @Section['Content']
 
-	<div data-bind="foreach: demos, visible: demos().length, masonry: { columnWidth: 425, isAnimated: true }">
+	<div data-bind="foreach: demos, visible: demos().length, masonry: { columnWidth: 425, isAnimated: true }, ellipsis: true">
 		<div class="widget">
 
 			<div class="github-fork-ribbon-wrapper right" data-bind="visible: isNew">
@@ -27,7 +27,8 @@
 				</div>
 
 				<div class="main">
-					<p class="clearfix;" style="margin-top: 15px;" data-bind="text: description"></p>
+					<p class="description clearfix" style="margin-top: 15px; height: 40px; overflow: hidden;" data-bind="text: description">
+					</p>
 		
 					<p>
 						Last updated: <span data-bind="date: lastCommit"></span>
@@ -94,11 +95,32 @@
 	ko.bindingHandlers.modal = {
 		update: function (element, valueAccessor) {
 			$(element).click(function () {
-				var content = $('.content', $(element).parent()).html()
+
+				var content = 
+					$($('.content', $(element).parent()).html());
+				
+				var originalDescription = 
+					$(".description", $(element).parent()).triggerHandler("originalContent").text();
+				
+				$(".description", content).html(originalDescription);
+
 				$.fancybox({
 					content: $('<div/>').addClass('list-widget').html(content)
 				 });
 			});
+		}
+	};
+
+	ko.bindingHandlers.ellipsis = {
+		update: function(element, valueAccessor, allBindingsAccessor) {
+			
+			var $element = $(element),
+				list = ko.utils.unwrapObservable(allBindingsAccessor().foreach)
+		
+			if (!list.length)
+				return
+
+			$(".widget .description").dotdotdot({watch:true});
 		}
 	};
 

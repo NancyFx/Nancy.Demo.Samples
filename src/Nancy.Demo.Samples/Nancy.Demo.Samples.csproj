@@ -52,13 +52,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Nancy.0.16.1\lib\net40\Nancy.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy.Authentication.Forms, Version=0.16.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Nancy.Authentication.Forms.0.16.0\lib\net40\Nancy.Authentication.Forms.dll</HintPath>
+    <Reference Include="Nancy.Authentication.Forms">
+      <HintPath>..\packages\Nancy.Authentication.Forms.0.16.1\lib\net40\Nancy.Authentication.Forms.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy.Hosting.Aspnet, Version=0.16.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Nancy.Hosting.Aspnet.0.16.0\lib\net40\Nancy.Hosting.Aspnet.dll</HintPath>
+    <Reference Include="Nancy.Hosting.Aspnet">
+      <HintPath>..\packages\Nancy.Hosting.Aspnet.0.16.1\lib\net40\Nancy.Hosting.Aspnet.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Runtime.Caching" />
@@ -91,6 +89,9 @@
     <Content Include="Content\img\glyphicons-halflings.png" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\jquery.autoellipsis-1.0.10.min.js" />
+    <Content Include="Content\js\jquery.autoellipsis.js" />
+    <Content Include="Content\js\jquery.dotdotdot-1.5.6-packed.js" />
     <Content Include="Content\js\jquery.fancybox.pack.js" />
     <Content Include="Content\js\jquery.masonry.min.js" />
     <Content Include="Content\js\knockout-2.2.0.js" />

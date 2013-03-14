@@ -171,6 +171,7 @@
 		<script src="@Path['~/content/js/knockout-2.2.0.js'];"></script>
 		<script src="@Path['~/content/js/moment.min.js'];"></script>
 		<script src="@Path['~/content/js/jquery.masonry.min.js'];"></script>
+		<script src="@Path['~/content/js/jquery.dotdotdot-1.5.6-packed.js'];"></script>
 
 		<script>
 			@Section['Scripts']
@@ -193,6 +194,7 @@
 
 			ko.bindingHandlers.masonry = {
 				update: function(element, valueAccessor, allBindingsAccessor) {
+				/*
 					var $element = $(element),
 						list = ko.utils.unwrapObservable(allBindingsAccessor().foreach)
 						masonry = ko.utils.unwrapObservable(valueAccessor())
@@ -204,6 +206,7 @@
 						return
 
 					$element.masonry(masonry)
+					*/
 				}
 			}
 

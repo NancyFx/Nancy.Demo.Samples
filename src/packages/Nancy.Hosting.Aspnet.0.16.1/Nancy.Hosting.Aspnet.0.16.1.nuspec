@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Nancy.Hosting.Aspnet</id>
-    <version>0.16.0</version>
+    <version>0.16.1</version>
     <authors>Andreas Håkansson,  Steven Robbins and contributors</authors>
     <owners>Andreas Håkansson,  Steven Robbins and contributors</owners>
     <licenseUrl>https://github.com/NancyFx/Nancy/blob/master/license.txt</licenseUrl>
@@ -15,7 +15,7 @@
     <language>en-US</language>
     <tags>Nancy ASP.NET</tags>
     <dependencies>
-      <dependency id="Nancy" version="0.16.0" />
+      <dependency id="Nancy" version="0.16.1" />
     </dependencies>
   </metadata>
 </package>
