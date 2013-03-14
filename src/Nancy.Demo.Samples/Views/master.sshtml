@@ -194,7 +194,6 @@
 
 			ko.bindingHandlers.masonry = {
 				update: function(element, valueAccessor, allBindingsAccessor) {
-				/*
 					var $element = $(element),
 						list = ko.utils.unwrapObservable(allBindingsAccessor().foreach)
 						masonry = ko.utils.unwrapObservable(valueAccessor())
@@ -206,7 +205,6 @@
 						return
 
 					$element.masonry(masonry)
-					*/
 				}
 			}
 
