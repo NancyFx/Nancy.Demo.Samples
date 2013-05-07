@@ -1,8 +1,6 @@
-# Nancy.Demo.Samples
-
 This site/demo shows a simple Nancy website that aggregates Nancy demo projects from multiple GitHub accounts that follow the	Nancy.Demo.xxxx naming convention.
 		
-## The Tech</h2>
+## The Tech
 
 For rendering the views this site uses the SuperSimpleViewEngine, which is build into Nancy core, along with <a href="http://knockoutjs.com/">Knockout.js</a>
 for binding data to the view.
