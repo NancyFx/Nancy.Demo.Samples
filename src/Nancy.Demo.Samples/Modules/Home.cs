@@ -12,6 +12,10 @@
             Get["/about"] = parameters => {
                 return View["about"];
             };
+
+            Get["/howto"] = parameters => {
+                return View["howto"];
+            };
         }
     }
 }

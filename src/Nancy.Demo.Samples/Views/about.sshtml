@@ -16,7 +16,7 @@
 			for binding data to the view.
 		</p>
 		<p>
-			On the storage front, we're using <a href="http://www.10gen.com/products/mongodb">MongoDB</a>, with the live samples site using <a href="http://mongohq.com/>MongoHQ</a>. 
+			On the storage front, we're using <a href="http://www.10gen.com/products/mongodb">MongoDB</a>, with the live samples site using <a href="http://mongohq.com/">MongoHQ</a>. 
 			If you're running locally you will need to make sure you have a local instance of MongoDB running on your machine, or edit the <em>Configuration.cs</em> class and
 			alter the connection string to point to your own MongoHQ account.
 		</p>

@@ -119,6 +119,10 @@
 				height: 160px;
 			}
 
+			.contributors {
+				height: 50px;
+			}
+
 			.widget .main {
 				display: none;
 			}
@@ -144,7 +148,7 @@
 					<li><a href="/">Home</a></li> 
 					<li><a href="/about">About</a></li>
 					<li><a href="/contributors">Contributors</a></li>
-					<li><a href="/">How to contribute</a></li>
+					<li><a href="/howto">How to contribute</a></li>
 				</ul>
 				<div  class="pull-right">
 					<ul class="nav">

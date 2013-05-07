@@ -29,7 +29,7 @@
 	<h2>Contributors</h2>
 
 	<div data-bind="foreach: contributors, visible: contributors().length, masonry: { columnWidth: 425, isAnimated: true }">
-		<div class="widget">
+		<div class="widget contributors">
 			<a href='#' data-bind="attr: { href: url }">
 				<img data-bind="attr: { src: avatarUrl }" alt="" class="avatar" style="float: left;" />
 			</a>
