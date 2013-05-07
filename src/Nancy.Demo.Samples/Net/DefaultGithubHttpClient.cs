@@ -48,6 +48,8 @@ namespace Nancy.Demo.Samples.Net
             var httpHelper =
                 new HttpHelper(url);
 
+            httpHelper.HttpWebRequest.UserAgent = "samples-nancyfx.org";
+
             using (var stream = httpHelper.OpenRead())
             {
                 using (var reader = new StreamReader(stream))
