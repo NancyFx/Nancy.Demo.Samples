@@ -131,6 +131,11 @@
 				position: relative;
 			}
 
+			.list-widget {
+			    max-width: 1000px;
+			    padding-right: 20px;
+			}
+
 			.github-fork-ribbon {
 				background-color: rgb(2, 157, 196);
 			}
